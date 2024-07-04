@@ -18,4 +18,6 @@ class CustomColors {
     Color.fromRGBO(9, 8, 8, 1),
     BlendMode.srcIn,
   );
+  static const Color pcncColor = Color.fromRGBO(242, 103, 59, 1);
+  static const Color homePageBackgroundColor = Color.fromRGBO(253, 253, 253, 1);
 }

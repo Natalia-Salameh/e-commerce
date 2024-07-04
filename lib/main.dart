@@ -14,7 +14,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: AppRoute.signUp,
+      initialRoute: AppRoute.home,
       getPages: routes,
       theme: AppTheme.lightTheme,
     );
