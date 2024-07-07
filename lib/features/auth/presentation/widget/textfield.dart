@@ -1,5 +1,4 @@
 import 'package:ecommerce/core/constants/colors.dart';
-import 'package:ecommerce/core/constants/fonts.dart';
 import 'package:ecommerce/core/constants/iconasset.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -23,7 +22,7 @@ class TextFieldWidget extends StatelessWidget {
     return SizedBox(
       height: 55,
       width: 317,
-      child: TextField(
+      child: TextFormField(
         controller: controller,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.all(15),
@@ -31,18 +30,18 @@ class TextFieldWidget extends StatelessWidget {
           fillColor: CustomColors.textFieldBackgroundColor,
           hintText: hintText,
           hintStyle: const TextStyle(
-              color: CustomColors.textFieldHintColor,
-              fontSize: 12,
-              fontFamily: CustomFonts.montserrat),
+            color: CustomColors.textFieldHintColor,
+            fontSize: 12,
+          ),
           prefixIcon: icon,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
             borderSide:
-                BorderSide(color: CustomColors.textFieldBorderColor, width: 1),
+                const BorderSide(color: CustomColors.textFieldBorderColor, width: 1),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide: BorderSide(color: CustomColors.buttonColor),
+            borderSide: const BorderSide(color: CustomColors.buttonColor),
           ),
           suffixIcon: obscureText
               ? SvgPicture.asset(

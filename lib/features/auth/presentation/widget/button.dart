@@ -1,7 +1,6 @@
 import 'package:ecommerce/core/constants/colors.dart';
-import 'package:ecommerce/core/constants/fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ButtonWidget extends StatelessWidget {
   final void Function()? onPressed;
@@ -26,11 +25,11 @@ class ButtonWidget extends StatelessWidget {
         ),
         child: Text(
           data,
-          style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-              fontFamily: CustomFonts.montserrat),
+          style: GoogleFonts.montserrat(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
+          ),
         ),
       ),
     );

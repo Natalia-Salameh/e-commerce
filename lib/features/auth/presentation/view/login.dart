@@ -1,16 +1,15 @@
 import 'package:ecommerce/core/constants/colors.dart';
-import 'package:ecommerce/core/constants/fonts.dart';
 import 'package:ecommerce/core/constants/iconasset.dart';
 import 'package:ecommerce/core/constants/routes.dart';
 import 'package:ecommerce/features/auth/presentation/widget/button.dart';
 import 'package:ecommerce/features/auth/presentation/widget/textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LogIn extends StatelessWidget {
-  LogIn({super.key});
+  const LogIn({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +21,15 @@ class LogIn extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 50),
-              const SizedBox(
+              SizedBox(
                 width: 192,
-                child: Text('Welcome Back!',
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontFamily: CustomFonts.montserrat,
-                      fontWeight: FontWeight.w700,
-                    )),
+                child: Text(
+                  'Welcome Back!',
+                  style: GoogleFonts.montserrat(
+                    fontSize: 36,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
               ),
               const SizedBox(height: 15),
               Form(
@@ -72,11 +72,10 @@ class LogIn extends StatelessWidget {
                     padding: EdgeInsets.zero,
                   ),
                   onPressed: () {},
-                  child: const Text(
+                  child: Text(
                     'Forgot Password?',
-                    style: TextStyle(
+                    style: GoogleFonts.montserrat(
                       fontSize: 12,
-                      fontFamily: CustomFonts.montserrat,
                       fontWeight: FontWeight.w400,
                       color: CustomColors.authOrangeColor,
                     ),
@@ -95,20 +94,18 @@ class LogIn extends StatelessWidget {
                     Get.toNamed(AppRoute.signUp);
                   },
                   child: RichText(
-                    text: const TextSpan(
+                    text: TextSpan(
                       text: 'Create An Account  ',
-                      style: TextStyle(
+                      style: GoogleFonts.poppins(
                         fontSize: 14,
-                        fontFamily: CustomFonts.poppins,
                         fontWeight: FontWeight.w400,
                         color: CustomColors.accountColor,
                       ),
                       children: [
                         TextSpan(
                           text: 'Sign Up',
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 14,
-                            fontFamily: CustomFonts.montserrat,
                             fontWeight: FontWeight.w600,
                             color: CustomColors.authOrangeColor,
                             decoration: TextDecoration.underline,

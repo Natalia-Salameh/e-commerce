@@ -1,4 +1,3 @@
-import 'package:ecommerce/core/constants/fonts.dart';
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -6,7 +5,7 @@ class AppTheme {
     // brightness: Brightness.light,
     //primaryColor: Color.fromARGB(248, 255, 255, 255),
     // hintColor: const Color.fromARGB(132, 217, 217, 217),
-    fontFamily: CustomFonts.montserrat,
+
     // textTheme: const TextTheme(
     //   // displayLarge: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
     //   // titleLarge: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),

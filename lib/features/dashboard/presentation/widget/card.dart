@@ -31,15 +31,15 @@ class CardWidget extends StatelessWidget {
                   child: Image.asset(CustomIconAsset.logo2)),
               Text(
                 header,
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
               ),
               Text(
                 description,
-                style: TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
+                style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
               ),
               Text(
                 price,
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
               ),
               Row(
                 children: [

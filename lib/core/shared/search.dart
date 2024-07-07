@@ -1,6 +1,6 @@
 import 'package:ecommerce/core/constants/colors.dart';
-import 'package:ecommerce/core/constants/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SearchWidget extends StatelessWidget {
   final String hintText;
@@ -20,16 +20,16 @@ class SearchWidget extends StatelessWidget {
         width: 343,
         child: Material(
           elevation: 5,
-          shadowColor: Color.fromRGBO(0, 0, 0, 0.04),
+          shadowColor: const Color.fromRGBO(0, 0, 0, 0.04),
           child: TextField(
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.all(6),
               fillColor: CustomColors.textFieldBackgroundColor,
               hintText: hintText,
-              hintStyle: const TextStyle(
-                  color: CustomColors.textFieldHintColor,
-                  fontSize: 12,
-                  fontFamily: CustomFonts.montserrat),
+              hintStyle: GoogleFonts.montserrat(
+                color: CustomColors.textFieldHintColor,
+                fontSize: 12,
+              ),
               prefixIcon: icon,
               border: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(6)),

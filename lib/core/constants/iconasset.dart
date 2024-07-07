@@ -10,4 +10,9 @@ class CustomIconAsset {
   static const String heart = "$rootIcons/heart.svg";
   static const String save = "$rootIcons/Bookmark.svg";
   static const String cart = "$rootIcons/cart.svg";
+  static const String home = "$rootIcons/home 1.svg";
+  static const String settings = "$rootIcons/settings.svg";
+  static const String navSearch = "$rootIcons/search 1.svg";
+    static const String navCart = "$rootIcons/shopping-cart 2.svg";
+
 }

@@ -20,4 +20,5 @@ class CustomColors {
   );
   static const Color pcncColor = Color.fromRGBO(242, 103, 59, 1);
   static const Color homePageBackgroundColor = Color.fromRGBO(253, 253, 253, 1);
+  static const Color navBarColor = Color.fromRGBO(235, 48, 48, 1);
 }

@@ -2,20 +2,22 @@ import 'package:ecommerce/core/constants/colors.dart';
 import 'package:ecommerce/core/constants/iconasset.dart';
 import 'package:ecommerce/core/shared/search.dart';
 import 'package:ecommerce/features/dashboard/presentation/widget/card.dart';
+import 'package:ecommerce/features/dashboard/presentation/widget/navigation.dart';
 import 'package:ecommerce/features/dashboard/presentation/widget/trendingcard.dart';
 import 'package:ecommerce/features/dashboard/presentation/widget/trendingproducts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatelessWidget {
-  Home({super.key});
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CustomColors.backgroundColor,
+      backgroundColor: CustomColors.homePageBackgroundColor,
       appBar: AppBar(
-        backgroundColor: CustomColors.backgroundColor,
+        backgroundColor: CustomColors.homePageBackgroundColor,
         leading: Builder(
           builder: (context) {
             return IconButton(
@@ -40,9 +42,9 @@ class Home extends StatelessWidget {
                 width: 24,
                 fit: BoxFit.scaleDown,
               ),
-              const Text(
+              Text(
                 "PCNC",
-                style: TextStyle(
+                style: GoogleFonts.libreCaslonText(
                     color: CustomColors.pcncColor,
                     fontSize: 18,
                     fontWeight: FontWeight.w700),
@@ -103,7 +105,7 @@ class Home extends StatelessWidget {
                       CircleAvatar(
                         child: Image.asset(CustomIconAsset.logo2),
                       ),
-                      Text("test"),
+                      const Text("test"),
                     ],
                   ),
                 ],
@@ -113,19 +115,20 @@ class Home extends StatelessWidget {
               //   mainAxisSpacing: 12,
               //   crossAxisCount: 2,
               //   children: [
-                  CardWidget(
-                    header: "header",
-                    description: "description",
-                    price: "123",
-                  ),
+              const CardWidget(
+                header: "header",
+                description: "description",
+                price: "123",
+              ),
               //   ],
               // ),
-              TrendingProductsWidget(),
-              TrendingCardWidget(header: "header", price: "price")
+              const TrendingProductsWidget(),
+              const TrendingCardWidget(header: "header", price: "price")
             ],
           ),
         ),
       ),
+      bottomNavigationBar: const NavigationBarWidget(currentIndex: 0),
     );
   }
 }

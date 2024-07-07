@@ -1,16 +1,15 @@
 import 'package:ecommerce/core/constants/colors.dart';
-import 'package:ecommerce/core/constants/fonts.dart';
 import 'package:ecommerce/core/constants/iconasset.dart';
 import 'package:ecommerce/core/constants/routes.dart';
 import 'package:ecommerce/features/auth/presentation/widget/button.dart';
 import 'package:ecommerce/features/auth/presentation/widget/textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SignUp extends StatelessWidget {
-  SignUp({super.key});
+  const SignUp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +22,19 @@ class SignUp extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 50),
-                const SizedBox(
+                SizedBox(
                   width: 192,
-                  child: Text('Create an account',
-                      style: TextStyle(
-                        fontSize: 36,
-                        fontFamily: CustomFonts.montserrat,
-                        fontWeight: FontWeight.w700,
-                      )),
+                  child: Text(
+                    'Create an account',
+                    style: GoogleFonts.montserrat(
+                      fontSize: 36,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 45),
                 Form(
+                  key: key,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,29 +95,26 @@ class SignUp extends StatelessWidget {
                 SizedBox(
                   width: 258,
                   child: RichText(
-                    text: const TextSpan(
+                    text: TextSpan(
                       text: "By clicking the ",
-                      style: TextStyle(
+                      style: GoogleFonts.montserrat(
                         fontSize: 12,
-                        fontFamily: CustomFonts.montserrat,
                         fontWeight: FontWeight.w400,
                         color: CustomColors.textFieldHintColor,
                       ),
                       children: [
                         TextSpan(
                           text: "Register",
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 12,
-                            fontFamily: CustomFonts.montserrat,
                             fontWeight: FontWeight.w400,
                             color: CustomColors.authOrangeColor,
                           ),
                         ),
                         TextSpan(
                           text: " button, you agree to the public offer",
-                          style: TextStyle(
+                          style: GoogleFonts.montserrat(
                             fontSize: 12,
-                            fontFamily: CustomFonts.montserrat,
                             fontWeight: FontWeight.w400,
                             color: CustomColors.textFieldHintColor,
                           ),
@@ -137,25 +135,21 @@ class SignUp extends StatelessWidget {
                       Get.toNamed(AppRoute.login);
                     },
                     child: RichText(
-                      text: const TextSpan(
+                      text: TextSpan(
                         text: 'I Already Have an Account  ',
-                        style: TextStyle(
+                        style: GoogleFonts.poppins(
                           fontSize: 14,
-                          fontFamily: CustomFonts.poppins,
                           fontWeight: FontWeight.w400,
                           color: CustomColors.accountColor,
                         ),
                         children: [
                           TextSpan(
-                            text: 'Login',
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: CustomFonts.montserrat,
-                              fontWeight: FontWeight.w600,
-                              color: CustomColors.authOrangeColor,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
+                              text: 'Login',
+                              style: GoogleFonts.montserrat(
+                                fontWeight: FontWeight.w600,
+                                color: CustomColors.authOrangeColor,
+                                decoration: TextDecoration.underline,
+                              )),
                         ],
                       ),
                     ),

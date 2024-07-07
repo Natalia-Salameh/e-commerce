@@ -1,38 +1,36 @@
+import 'package:ecommerce/core/constants/colors.dart';
 import 'package:ecommerce/core/constants/iconasset.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class TrendingCardWidget extends StatelessWidget {
+class CategoryCardWidget extends StatelessWidget {
   final String header;
-  final String price;
 
-  const TrendingCardWidget({
+  const CategoryCardWidget({
     super.key,
     required this.header,
-    required this.price,
   });
 
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: CustomColors.backgroundColor,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SizedBox(
-          width: 142,
-          height: 186,
+          width: 164,
+          height: 245,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               SizedBox(
-                  width: 142,
-                  height: 100,
+                  width: 164,
+                  height: 136,
                   child: Image.asset(CustomIconAsset.logo2)),
               Text(
                 header,
-                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
-              ),
-              Text(
-                price,
-                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                style: GoogleFonts.montserrat(
+                    fontWeight: FontWeight.w500, fontSize: 16),
               ),
             ],
           ),
