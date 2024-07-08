@@ -1,23 +1,20 @@
 import 'dart:convert';
 
+import 'package:ecommerce/features/auth/domain/entities/signup_entity.dart';
+
 SignUpModel signUpModelFromJson(String str) => SignUpModel.fromJson(json.decode(str));
 
 String signUpModelToJson(SignUpModel data) => json.encode(data.toJson());
 
-class SignUpModel {
-    String email;
-    String name;
-    String password;
-    String role;
-    String avatar;
+class SignUpModel extends SignUpEntity{
 
     SignUpModel({
-        required this.email,
-        required this.name,
-        required this.password,
-        required this.role,
-        required this.avatar,
-    });
+        required String email,
+        required String name,
+        required String password,
+        required String role,
+        required String avatar,
+    }) : super(email: email, name: name, password: password, role: role, avatar: avatar);
 
     factory SignUpModel.fromJson(Map<String, dynamic> json) => SignUpModel(
         email: json["email"],

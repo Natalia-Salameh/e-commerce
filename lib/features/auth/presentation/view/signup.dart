@@ -1,6 +1,7 @@
 import 'package:ecommerce/core/constants/colors.dart';
 import 'package:ecommerce/core/constants/iconasset.dart';
 import 'package:ecommerce/core/constants/routes.dart';
+import 'package:ecommerce/core/validation/validation.dart';
 import 'package:ecommerce/features/auth/presentation/widget/button.dart';
 import 'package:ecommerce/features/auth/presentation/widget/textfield.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SignUp extends StatelessWidget {
-  const SignUp({super.key});
+  SignUp({super.key});
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -40,41 +42,41 @@ class SignUp extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextFieldWidget(
-                        hintText: 'Username',
-                        controller: TextEditingController(),
-                        icon: SvgPicture.asset(
-                          CustomIconAsset.person,
-                          colorFilter: CustomColors.textFieldIconColorSignUp,
-                          height: 24,
-                          width: 24,
-                          fit: BoxFit.scaleDown,
-                        ),
-                      ),
+                          hintText: 'Username',
+                          controller: TextEditingController(),
+                          icon: SvgPicture.asset(
+                            CustomIconAsset.person,
+                            colorFilter: CustomColors.textFieldIconColorSignUp,
+                            height: 24,
+                            width: 24,
+                            fit: BoxFit.scaleDown,
+                          ),
+                          validator: (value) => validInput(value!, 'Username')),
                       const SizedBox(height: 30),
                       TextFieldWidget(
-                        hintText: 'Email',
-                        controller: TextEditingController(),
-                        icon: SvgPicture.asset(
-                          CustomIconAsset.email,
-                          colorFilter: CustomColors.textFieldIconColorSignUp,
-                          height: 24,
-                          width: 24,
-                          fit: BoxFit.scaleDown,
-                        ),
-                      ),
+                          hintText: 'Email',
+                          controller: TextEditingController(),
+                          icon: SvgPicture.asset(
+                            CustomIconAsset.email,
+                            colorFilter: CustomColors.textFieldIconColorSignUp,
+                            height: 24,
+                            width: 24,
+                            fit: BoxFit.scaleDown,
+                          ),
+                          validator: (value) => validInput(value!, 'Email')),
                       const SizedBox(height: 30),
                       TextFieldWidget(
-                        obscureText: true,
-                        hintText: 'Password',
-                        controller: TextEditingController(),
-                        icon: SvgPicture.asset(
-                          CustomIconAsset.password,
-                          colorFilter: CustomColors.textFieldIconColorSignUp,
-                          height: 24,
-                          width: 24,
-                          fit: BoxFit.scaleDown,
-                        ),
-                      ),
+                          obscureText: true,
+                          hintText: 'Password',
+                          controller: TextEditingController(),
+                          icon: SvgPicture.asset(
+                            CustomIconAsset.password,
+                            colorFilter: CustomColors.textFieldIconColorSignUp,
+                            height: 24,
+                            width: 24,
+                            fit: BoxFit.scaleDown,
+                          ),
+                          validator: (value) => validInput(value!, 'Password')),
                       const SizedBox(height: 30),
                       TextFieldWidget(
                         obscureText: true,
@@ -87,6 +89,13 @@ class SignUp extends StatelessWidget {
                           width: 24,
                           fit: BoxFit.scaleDown,
                         ),
+                        // validator: (value) {
+                        //   if (value !=
+                        //       registerController.passwordController.text) {
+                        //     return "Passwords do not match";
+                        //   }
+                        //   return validInput(value!, "12".tr);
+                        // },
                       ),
                     ],
                   ),
@@ -125,7 +134,9 @@ class SignUp extends StatelessWidget {
                 ),
                 const SizedBox(height: 60),
                 ButtonWidget(
-                  onPressed: () {},
+                  onPressed: () {
+                    _formKey.currentState!.validate();
+                  },
                   data: 'Create Account',
                 ),
                 const SizedBox(height: 20),

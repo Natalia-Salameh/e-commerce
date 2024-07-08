@@ -1,6 +1,7 @@
 import 'package:ecommerce/core/constants/colors.dart';
 import 'package:ecommerce/core/constants/iconasset.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 class TextFieldWidget extends StatelessWidget {
@@ -8,6 +9,8 @@ class TextFieldWidget extends StatelessWidget {
   final TextEditingController controller;
   final SvgPicture icon;
   final bool obscureText;
+  final String? Function(String?)? validator;
+  final List<TextInputFormatter>? inputFormatters;
 
   const TextFieldWidget({
     super.key,
@@ -15,6 +18,8 @@ class TextFieldWidget extends StatelessWidget {
     required this.controller,
     required this.icon,
     this.obscureText = false,
+    this.validator,
+    this.inputFormatters,
   });
 
   @override
@@ -36,8 +41,8 @@ class TextFieldWidget extends StatelessWidget {
           prefixIcon: icon,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
-            borderSide:
-                const BorderSide(color: CustomColors.textFieldBorderColor, width: 1),
+            borderSide: const BorderSide(
+                color: CustomColors.textFieldBorderColor, width: 1),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
@@ -54,6 +59,8 @@ class TextFieldWidget extends StatelessWidget {
               : null,
         ),
         obscureText: obscureText,
+        inputFormatters: inputFormatters,
+        validator: validator,
       ),
     );
   }
