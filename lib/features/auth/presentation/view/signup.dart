@@ -7,11 +7,11 @@ import 'package:ecommerce/features/auth/presentation/widget/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:ecommerce/features/auth/presentation/controller/signup_controller.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SignUp extends StatelessWidget {
-  SignUp({super.key});
-  final _formKey = GlobalKey<FormState>();
+class SignUpPage extends StatelessWidget {
+  final SignUpController signUpController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -36,14 +36,14 @@ class SignUp extends StatelessWidget {
                 ),
                 const SizedBox(height: 45),
                 Form(
-                  key: key,
+                  key: signUpController.formKey,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextFieldWidget(
                           hintText: 'Username',
-                          controller: TextEditingController(),
+                          controller: signUpController.usernameController,
                           icon: SvgPicture.asset(
                             CustomIconAsset.person,
                             colorFilter: CustomColors.textFieldIconColorSignUp,
@@ -55,7 +55,7 @@ class SignUp extends StatelessWidget {
                       const SizedBox(height: 30),
                       TextFieldWidget(
                           hintText: 'Email',
-                          controller: TextEditingController(),
+                          controller: signUpController.emailController,
                           icon: SvgPicture.asset(
                             CustomIconAsset.email,
                             colorFilter: CustomColors.textFieldIconColorSignUp,
@@ -68,7 +68,7 @@ class SignUp extends StatelessWidget {
                       TextFieldWidget(
                           obscureText: true,
                           hintText: 'Password',
-                          controller: TextEditingController(),
+                          controller: signUpController.passwordController,
                           icon: SvgPicture.asset(
                             CustomIconAsset.password,
                             colorFilter: CustomColors.textFieldIconColorSignUp,
@@ -80,8 +80,8 @@ class SignUp extends StatelessWidget {
                       const SizedBox(height: 30),
                       TextFieldWidget(
                         obscureText: true,
-                        hintText: 'ConfirmPassword',
-                        controller: TextEditingController(),
+                        hintText: 'Confirm Password',
+                        controller: signUpController.confirmPasswordController,
                         icon: SvgPicture.asset(
                           CustomIconAsset.password,
                           colorFilter: CustomColors.textFieldIconColorSignUp,
@@ -89,13 +89,12 @@ class SignUp extends StatelessWidget {
                           width: 24,
                           fit: BoxFit.scaleDown,
                         ),
-                        // validator: (value) {
-                        //   if (value !=
-                        //       registerController.passwordController.text) {
-                        //     return "Passwords do not match";
-                        //   }
-                        //   return validInput(value!, "12".tr);
-                        // },
+                        validator: (value) {
+                          if (value != signUpController.passwordController.text) {
+                            return "Passwords do not match";
+                          }
+                          return validInput(value!, 'Confirm Password');
+                        },
                       ),
                     ],
                   ),
@@ -135,7 +134,7 @@ class SignUp extends StatelessWidget {
                 const SizedBox(height: 60),
                 ButtonWidget(
                   onPressed: () {
-                    _formKey.currentState!.validate();
+                    signUpController.signUp();
                   },
                   data: 'Create Account',
                 ),

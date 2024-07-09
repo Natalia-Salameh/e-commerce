@@ -1,16 +1,23 @@
 import 'package:ecommerce/core/constants/colors.dart';
 import 'package:ecommerce/core/constants/iconasset.dart';
+import 'package:ecommerce/core/constants/routes.dart';
+import 'package:ecommerce/core/networkHandler.dart';
+import 'package:ecommerce/core/shared/dialogWidget.dart';
 import 'package:ecommerce/core/shared/search.dart';
+import 'package:ecommerce/features/auth/presentation/controller/login_controller.dart';
 import 'package:ecommerce/features/dashboard/presentation/widget/card.dart';
 import 'package:ecommerce/features/dashboard/presentation/widget/navigation.dart';
 import 'package:ecommerce/features/dashboard/presentation/widget/trendingcard.dart';
 import 'package:ecommerce/features/dashboard/presentation/widget/trendingproducts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  Home({super.key});
+
+  final LoginController loginController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +73,24 @@ class Home extends StatelessWidget {
       ),
       drawer: Drawer(
         child: MaterialButton(
-          onPressed: () {},
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return CustomDialog(
+                  title: 'Confirmation',
+                  content: 'Are you sure you want to log out?',
+                  buttonText: "Log out",
+                  onAccept: () {
+                    loginController.logout();
+                  },
+                  onCancel: () {
+                    Get.back();
+                  },
+                );
+              },
+            );
+          },
           height: 5,
           child: const Text("Log out"),
         ),
@@ -89,6 +113,11 @@ class Home extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w600)),
                     MaterialButton(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4),
+                        side: const BorderSide(
+                            color: CustomColors.backgroundColor),
+                      ),
                       onPressed: () {},
                       child: const Text(
                         "See All",

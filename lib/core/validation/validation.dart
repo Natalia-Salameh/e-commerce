@@ -18,9 +18,7 @@ String? validInput(String val, String field) {
       return "$field must contain at least one uppercase letter";
     } else if (!RegExp(r'(?=.*\d)').hasMatch(val)) {
       return "$field must contain at least one digit";
-    } else if (!RegExp(r'(?=.*[!@#$%^&*()_+=|<>?{}[\]~-])').hasMatch(val)) {
-      return "$field must contain at least one special character";
-    }
+    } 
   }
 
   return null;

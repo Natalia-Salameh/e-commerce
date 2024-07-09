@@ -31,8 +31,9 @@ class TrendingProductsWidget extends StatelessWidget {
         ),
         trailing: MaterialButton(
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4),
-              side: const BorderSide(color: CustomColors.backgroundColor)),
+            borderRadius: BorderRadius.circular(4),
+            side: const BorderSide(color: CustomColors.backgroundColor),
+          ),
           onPressed: () {},
           child: const Row(
             mainAxisSize: MainAxisSize.min,

@@ -1,16 +1,15 @@
 import 'dart:convert';
-import 'dart:io';
 
+import 'package:ecommerce/core/constants/routes.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:path/path.dart';
 
 class NetworkHandler {
   static const storage = FlutterSecureStorage();
 
   static Future<http.Response> getRequest(String url,
       {Map<String, dynamic>? queryParams, bool includeToken = false}) async {
-
     Map<String, String> headers = {
       "Content-Type": "application/json",
     };
@@ -35,7 +34,6 @@ class NetworkHandler {
 
   static Future<http.Response> postRequest(String url, var data,
       {Map<String, dynamic>? queryParams, bool includeToken = false}) async {
-
     Map<String, String> headers = {
       "Content-Type": "application/json",
     };
@@ -62,7 +60,6 @@ class NetworkHandler {
 
   static Future<http.Response> postParamsRequest(String url,
       {Map<String, dynamic>? queryParams, bool includeToken = false}) async {
-
     Map<String, String> headers = {};
     if (includeToken) {
       String? token = await getToken();
@@ -82,28 +79,11 @@ class NetworkHandler {
     await storage.write(key: 'token', value: token);
   }
 
-  static Future<void> storeExpirationDate(String expiration) async {
-    await storage.write(key: 'expiration', value: expiration);
-  }
-
   static Future<String?> getToken() async {
     return await storage.read(key: 'token');
   }
 
-  static Future<DateTime?> getExpirationDate() async {
-    try {
-      var store = await storage.read(key: 'expiration');
-      if (store != null) {
-        return DateTime.tryParse(store);
-      }
-    } catch (e) {
-      print("Error fetching expiration date: $e");
-    }
-    return null;
-  }
-
   static Future<void> deleteToken() async {
     await storage.delete(key: 'token');
-    await storage.delete(key: 'expiration');
   }
 }

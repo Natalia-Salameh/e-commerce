@@ -1,6 +1,7 @@
 import 'package:ecommerce/core/constants/colors.dart';
 import 'package:ecommerce/core/constants/iconasset.dart';
 import 'package:ecommerce/core/constants/routes.dart';
+import 'package:ecommerce/features/auth/presentation/controller/login_controller.dart';
 import 'package:ecommerce/features/auth/presentation/widget/button.dart';
 import 'package:ecommerce/features/auth/presentation/widget/textfield.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LogIn extends StatelessWidget {
-  const LogIn({super.key});
+  LogIn({super.key});
+
+  final LoginController loginController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +36,7 @@ class LogIn extends StatelessWidget {
               ),
               const SizedBox(height: 15),
               Form(
+                key: loginController.formKey,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,7 +44,7 @@ class LogIn extends StatelessWidget {
                     const SizedBox(height: 30),
                     TextFieldWidget(
                       hintText: 'Username or Email',
-                      controller: TextEditingController(),
+                      controller: loginController.emailController,
                       icon: SvgPicture.asset(
                         CustomIconAsset.person,
                         colorFilter: CustomColors.textFieldIconColorLogin,
@@ -52,7 +56,7 @@ class LogIn extends StatelessWidget {
                     const SizedBox(height: 30),
                     TextFieldWidget(
                       hintText: 'Password',
-                      controller: TextEditingController(),
+                      controller: loginController.passwordController,
                       icon: SvgPicture.asset(
                         CustomIconAsset.password,
                         colorFilter: CustomColors.textFieldIconColorLogin,
@@ -71,7 +75,9 @@ class LogIn extends StatelessWidget {
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.zero,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+
+                  },
                   child: Text(
                     'Forgot Password?',
                     style: GoogleFonts.montserrat(
@@ -84,7 +90,9 @@ class LogIn extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               ButtonWidget(
-                onPressed: () {},
+                onPressed: () {
+                  loginController.login();
+                },
                 data: 'Login',
               ),
               const SizedBox(height: 30),

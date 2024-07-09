@@ -1,5 +1,6 @@
 import 'package:ecommerce/core/constants/routes.dart';
 import 'package:ecommerce/core/constants/theme.dart';
+import 'package:ecommerce/core/di/bindings.dart';
 import 'package:ecommerce/core/navigation/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialBinding: AppBindings(),
       initialRoute: AppRoute.splashScreen,
       getPages: routes,
       theme: AppTheme.lightTheme,
