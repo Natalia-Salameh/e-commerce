@@ -9,5 +9,5 @@ class AppLink {
 
   static const String categories = "$serverName/categories";
 
-  static const String category= "$serverName/categories";
+  static const String products = "$serverName/products";
 }

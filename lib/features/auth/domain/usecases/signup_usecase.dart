@@ -12,4 +12,5 @@ class SignupUseCase {
   Future<http.Response> execute(SignUpEntity signupEntity) {
     return repository.signUp(signupEntity);
   }
+  
 }

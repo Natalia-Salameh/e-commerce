@@ -1,7 +1,7 @@
 import 'package:ecommerce/core/constants/routes.dart';
 import 'package:ecommerce/core/constants/theme.dart';
-import 'package:ecommerce/core/di/bindings.dart';
 import 'package:ecommerce/core/navigation/routes.dart';
+import 'package:ecommerce/features/auth/presentation/bindings.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

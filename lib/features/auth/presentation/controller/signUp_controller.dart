@@ -1,11 +1,14 @@
 import 'package:ecommerce/core/constants/routes.dart';
+import 'package:ecommerce/features/auth/domain/entities/login_entity.dart';
 import 'package:ecommerce/features/auth/domain/entities/signup_entity.dart';
 import 'package:ecommerce/features/auth/domain/usecases/signup_usecase.dart';
+import 'package:ecommerce/features/auth/presentation/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class SignUpController extends GetxController {
+  final LoginController loginController = Get.find();
   final SignupUseCase signupUseCase;
 
   SignUpController(this.signupUseCase);
@@ -32,10 +35,16 @@ class SignUpController extends GetxController {
     }
   }
 
-  void handleSignupResponse(http.Response data) {
+  Future<void> handleSignupResponse(http.Response data) async {
     if (data.statusCode == 200 || data.statusCode == 201) {
+      LoginEntity loginEntity = LoginEntity(
+        email: emailController.text,
+        password: passwordController.text,
+      );
+
+      var response = await loginController.loginUseCase.execute(loginEntity);
+      loginController.handleLoginResponse(response);
       print(data);
-      Get.toNamed(AppRoute.home);
     } else {
       Get.defaultDialog(
         title: "Error",

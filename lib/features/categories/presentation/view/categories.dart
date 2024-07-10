@@ -2,12 +2,16 @@ import 'package:ecommerce/core/constants/colors.dart';
 import 'package:ecommerce/core/constants/iconasset.dart';
 import 'package:ecommerce/core/shared/search.dart';
 import 'package:ecommerce/features/categories/presentation/widget/categorycard.dart';
+import 'package:ecommerce/features/dashboard/presentation/controller/category_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Categories extends StatelessWidget {
-  const Categories({super.key});
+  Categories({super.key});
+
+  final CategoryController categoryController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -47,20 +51,34 @@ class Categories extends StatelessWidget {
           child: const Text("Log out"),
         ),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child: Column(children: [
-            SearchWidget(
+            const SearchWidget(
               hintText: "Search any category..",
               icon: Icon(Icons.search),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
-            CategoryCardWidget(
-              header: "header",
-            ),
+            Obx(() {
+              if (categoryController.categories.isEmpty) {
+                return const Center(child: CircularProgressIndicator());
+              } else {
+                return GridView.count(
+                  crossAxisCount: 2,
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  children: categoryController.categories.map((category) {
+                    return CategoryCardWidget(
+                      header: category.name,
+                      image: category.image,
+                    );
+                  }).toList(),
+                );
+              }
+            }),
           ]),
         ),
       ),

@@ -11,12 +11,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _navigateToHome();
+    navigateToHome();
   }
 
-  _navigateToHome() async {
+  navigateToHome() async {
     await Future.delayed(Duration(seconds: 3), () {});
-     Get.toNamed(AppRoute.signUp);
+    Get.toNamed(AppRoute.signUp);
   }
 
   @override
