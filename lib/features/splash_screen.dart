@@ -1,4 +1,5 @@
 import 'package:ecommerce/core/constants/routes.dart';
+import 'package:ecommerce/core/networkHandler.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,8 +16,11 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   navigateToHome() async {
+    String? accessToken = await NetworkHandler.getToken();
     await Future.delayed(Duration(seconds: 3), () {});
-    Get.toNamed(AppRoute.signUp);
+    accessToken == null
+        ? Get.toNamed(AppRoute.signUp)
+        : Get.toNamed(AppRoute.home);
   }
 
   @override

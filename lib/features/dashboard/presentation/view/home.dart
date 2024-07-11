@@ -121,17 +121,38 @@ class Home extends StatelessWidget {
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                     ),
-                    MaterialButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4),
-                        side: const BorderSide(style: BorderStyle.solid),
-                      ),
-                      onPressed: () {
-                        Get.toNamed(AppRoute.category);
-                      },
-                      child: const Text(
-                        "See All",
-                        style: TextStyle(color: Colors.black),
+                    Material(
+                      elevation: 4,
+                      shadowColor: Color.fromRGBO(0, 0, 0, 0.08),
+                      child: SizedBox(
+                        height: 30,
+                        width: 75,
+                        child: GestureDetector(
+                          onTap: () {
+                            categoryController.getToCategory();
+                          },
+                          child: Container(
+                            alignment: Alignment.center,
+                            height: 24,
+                            width: 57,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(6),
+                                color: CustomColors.backgroundColor,
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 16,
+                                      offset: Offset(1, 1),
+                                      color: Color.fromRGBO(0, 0, 0, 0.08))
+                                ]),
+                            child: Text(
+                              "See All",
+                              style: GoogleFonts.montserrat(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -152,17 +173,23 @@ class Home extends StatelessWidget {
                             child: Column(
                               children: [
                                 CircleAvatar(
-                                  child: Image.network(
-                                    category.image,
-                                    errorBuilder: (context, error, stackTrace) {
-                                      print('Error loading image: $error');
-                                      return const CircleAvatar(
-                                        backgroundColor: Colors.grey,
-                                        child: Icon(Icons.image_not_supported,
-                                            color: Colors.white),
-                                      );
-                                    },
-                                    fit: BoxFit.cover,
+                                  radius: 30,
+                                  child: ClipOval(
+                                    child: Image.network(
+                                      category.image,
+                                      errorBuilder:
+                                          (context, error, stackTrace) {
+                                        print('Error loading image: $error');
+                                        return const CircleAvatar(
+                                          backgroundColor: Colors.grey,
+                                          child: Icon(Icons.image_not_supported,
+                                              color: Colors.white),
+                                        );
+                                      },
+                                      fit: BoxFit.cover,
+                                      width: 60,
+                                      height: 60,
+                                    ),
                                   ),
                                 ),
                                 const SizedBox(height: 8),
@@ -182,15 +209,21 @@ class Home extends StatelessWidget {
                   return const Center(child: CircularProgressIndicator());
                 } else {
                   return GridView.count(
+                    childAspectRatio: 0.77,
                     crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 30,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     children: productController.products.map((product) {
-                      return CardWidget(
-                        header: product.title,
-                        description: product.description,
-                        price: product.price.toString(),
-                        images: product.images,
+                      return SizedBox(
+                        width: double.infinity,
+                        child: CardWidget(
+                          header: product.title,
+                          description: product.description,
+                          price: product.price.toString(),
+                          images: product.images,
+                        ),
                       );
                     }).toList(),
                   );

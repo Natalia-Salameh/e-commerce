@@ -1,6 +1,7 @@
 import 'package:ecommerce/core/constants/colors.dart';
 import 'package:ecommerce/core/constants/iconasset.dart';
 import 'package:ecommerce/core/constants/routes.dart';
+import 'package:ecommerce/core/validation/loginValidation.dart';
 import 'package:ecommerce/features/auth/presentation/controller/login_controller.dart';
 import 'package:ecommerce/features/auth/presentation/widget/button.dart';
 import 'package:ecommerce/features/auth/presentation/widget/textfield.dart';
@@ -52,6 +53,7 @@ class LogIn extends StatelessWidget {
                         width: 24,
                         fit: BoxFit.scaleDown,
                       ),
+                      validator: (value) => validLoginInput(value!, 'Email or Username'),
                     ),
                     const SizedBox(height: 30),
                     TextFieldWidget(
@@ -65,6 +67,7 @@ class LogIn extends StatelessWidget {
                         fit: BoxFit.scaleDown,
                       ),
                       obscureText: true,
+                      validator: (value) => validLoginInput(value!, 'Password'),
                     ),
                   ],
                 ),
@@ -75,9 +78,7 @@ class LogIn extends StatelessWidget {
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.zero,
                   ),
-                  onPressed: () {
-
-                  },
+                  onPressed: () {},
                   child: Text(
                     'Forgot Password?',
                     style: GoogleFonts.montserrat(

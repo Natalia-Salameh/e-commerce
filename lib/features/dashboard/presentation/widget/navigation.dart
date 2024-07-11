@@ -15,59 +15,64 @@ class NavigationBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        boxShadow: [
-          BoxShadow(color: CustomColors.textFieldHintColor, blurRadius: 1),
-        ],
-      ),
-      child: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
-        selectedItemColor: CustomColors.navBarColor,
-        unselectedItemColor: Colors.black,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        currentIndex: currentIndex,
-        onTap: onTap,
-        items: [
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(CustomIconAsset.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(CustomIconAsset.heart),
-            label: 'Wishlist',
-          ),
-          BottomNavigationBarItem(
-            icon: Container(
-              width: 53.85,
-              height: 56,
-              decoration:
-                  const BoxDecoration(shape: BoxShape.circle, boxShadow: [
-                BoxShadow(
-                    blurRadius: 14,
-                    color: Color.fromRGBO(0, 0, 0, 0.09),
-                    offset: Offset(0, 2))
-              ]),
-              child: IconButton(
-                icon: SvgPicture.asset(CustomIconAsset.navCart),
-                color: Colors.white,
-                onPressed: () {},
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Container(
+          height: 76,
+          decoration: const BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Color.fromRGBO(0, 0, 0, 0.1),
+                blurRadius: 1,
+                offset: Offset(0, -1),
               ),
-            ),
-            label: '',
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(CustomIconAsset.navSearch),
-            label: 'Search',
+          child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Colors.white,
+            selectedItemColor: CustomColors.navBarColor,
+            unselectedItemColor: Colors.black,
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
+            currentIndex: currentIndex,
+            onTap: onTap,
+            items: [
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(CustomIconAsset.home),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(CustomIconAsset.heart),
+                label: 'Wishlist',
+              ),
+              BottomNavigationBarItem(
+                icon: Container(),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(CustomIconAsset.navSearch),
+                label: 'Search',
+              ),
+              BottomNavigationBarItem(
+                icon: SvgPicture.asset(CustomIconAsset.settings),
+                label: 'Settings',
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(CustomIconAsset.settings),
-            label: 'Settings',
+        ),
+        Positioned(
+          bottom: 26,
+          left: MediaQuery.of(context).size.width / 2 - 28,
+          child: FloatingActionButton(
+            shape: CircleBorder(),
+            backgroundColor: CustomColors.backgroundColor,
+            onPressed: () {},
+            child: SvgPicture.asset(CustomIconAsset.navCart),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

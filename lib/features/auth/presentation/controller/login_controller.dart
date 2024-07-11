@@ -16,6 +16,7 @@ class LoginController extends GetxController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  RxBool isObsecure = true.obs;
 
   login() async {
     if (formKey.currentState?.validate() ?? false) {
@@ -33,7 +34,9 @@ class LoginController extends GetxController {
     NetworkHandler.deleteToken();
     Get.offAllNamed(AppRoute.login);
   }
-
+void toggleObsecure() async{
+  isObsecure.value = !isObsecure.value;
+}
   void handleLoginResponse(http.Response response) {
     if (response.statusCode == 200 || response.statusCode == 201) {
       print(response);

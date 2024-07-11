@@ -73,15 +73,25 @@ class NetworkHandler {
     }
   }
 
-  static Future<void> storeToken(String token) async {
-    await storage.write(key: 'token', value: token);
+  static Future<void> storeToken(String accessToken) async {
+    final accessTokenExp =
+        DateTime.now().add(const Duration(days: 20)).millisecondsSinceEpoch;
+    await storage.write(key: 'accessToken', value: accessToken);
+    await storage.write(
+        key: 'accessTokenExp', value: accessTokenExp.toString());
   }
 
   static Future<String?> getToken() async {
-    return await storage.read(key: 'token');
+    final expiry = await storage.read(key: 'accessTokenExp');
+    if (expiry != null &&
+        DateTime.now().millisecondsSinceEpoch > int.parse(expiry)) {
+      await deleteToken();
+      return null;
+    }
+    return await storage.read(key: 'accessToken');
   }
 
   static Future<void> deleteToken() async {
-    await storage.delete(key: 'token');
+    await storage.delete(key: 'accessToken');
   }
 }

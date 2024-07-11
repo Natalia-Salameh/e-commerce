@@ -66,17 +66,18 @@ class SignUpPage extends StatelessWidget {
                           validator: (value) => validInput(value!, 'Email')),
                       const SizedBox(height: 30),
                       TextFieldWidget(
-                          obscureText: true,
-                          hintText: 'Password',
-                          controller: signUpController.passwordController,
-                          icon: SvgPicture.asset(
-                            CustomIconAsset.password,
-                            colorFilter: CustomColors.textFieldIconColorSignUp,
-                            height: 24,
-                            width: 24,
-                            fit: BoxFit.scaleDown,
-                          ),
-                          validator: (value) => validInput(value!, 'Password')),
+                        obscureText: true,
+                        hintText: 'Password',
+                        controller: signUpController.passwordController,
+                        icon: SvgPicture.asset(
+                          CustomIconAsset.password,
+                          colorFilter: CustomColors.textFieldIconColorSignUp,
+                          height: 24,
+                          width: 24,
+                          fit: BoxFit.scaleDown,
+                        ),
+                        validator: (value) => validInput(value!, 'Password'),
+                      ),
                       const SizedBox(height: 30),
                       TextFieldWidget(
                         obscureText: true,
@@ -90,7 +91,8 @@ class SignUpPage extends StatelessWidget {
                           fit: BoxFit.scaleDown,
                         ),
                         validator: (value) {
-                          if (value != signUpController.passwordController.text) {
+                          if (value !=
+                              signUpController.passwordController.text) {
                             return "Passwords do not match";
                           }
                           return validInput(value!, 'Confirm Password');

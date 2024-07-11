@@ -22,11 +22,17 @@ class CustomDialog extends StatelessWidget {
       actions: [
         TextButton(
           onPressed: onCancel,
-          child: Text('Cancel'),
+          child: Text(
+            'Cancel',
+            style: TextStyle(color: Colors.black),
+          ),
         ),
         ElevatedButton(
           onPressed: onAccept,
-          child: Text(buttonText),
+          child: Text(
+            buttonText,
+            style: TextStyle(color: Colors.black),
+          ),
         ),
       ],
     );

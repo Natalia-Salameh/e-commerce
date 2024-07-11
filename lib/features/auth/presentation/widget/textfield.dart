@@ -1,8 +1,8 @@
 import 'package:ecommerce/core/constants/colors.dart';
-import 'package:ecommerce/core/constants/iconasset.dart';
+import 'package:ecommerce/features/auth/presentation/controller/login_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final String hintText;
@@ -10,16 +10,15 @@ class TextFieldWidget extends StatelessWidget {
   final SvgPicture icon;
   final bool obscureText;
   final String? Function(String?)? validator;
-  final List<TextInputFormatter>? inputFormatters;
+  final LoginController loginController = Get.find();
 
-  const TextFieldWidget({
+  TextFieldWidget({
     super.key,
     required this.hintText,
     required this.controller,
     required this.icon,
     this.obscureText = false,
     this.validator,
-    this.inputFormatters,
   });
 
   @override
@@ -48,17 +47,17 @@ class TextFieldWidget extends StatelessWidget {
             borderSide: const BorderSide(color: CustomColors.buttonColor),
           ),
           suffixIcon: obscureText
-              ? SvgPicture.asset(
-                  CustomIconAsset.eye,
-                  colorFilter: CustomColors.textFieldIconColorLogin,
-                  height: 24,
-                  width: 24,
-                  fit: BoxFit.scaleDown,
+              ? GestureDetector(
+                  onTap: () {
+                    loginController.toggleObsecure();
+                  },
+                  child: Icon(loginController.isObsecure.value
+                      ? Icons.visibility_outlined
+                      : Icons.visibility_off_outlined),
                 )
               : null,
         ),
         obscureText: obscureText,
-        inputFormatters: inputFormatters,
         validator: validator,
       ),
     );

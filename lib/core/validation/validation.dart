@@ -2,12 +2,16 @@ String? validInput(String val, String field) {
   if (val.isEmpty) {
     return "$field can't be empty";
   } else if (field == 'Email') {
-    if (!val.contains('@')) {
-      return 'A valid email address is required';
+    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(val)) {
+      return 'Please enter a valid email address';
     }
   } else if (field == 'Username') {
-    if (val.length < 6 || val.length > 100) {
-      return 'The username must be between 6 and 100 characters long.';
+    if (val.length < 6 || val.length > 20) {
+      return 'The username must be between 6 and 20 characters long.';
+    }
+
+    if (!RegExp(r'^[a-zA-Z0-9_]+$').hasMatch(val)) {
+      return 'Username can only contain letters, numbers, and underscores';
     }
   } else if (field == 'Password') {
     if (val.length < 8) {
@@ -18,7 +22,9 @@ String? validInput(String val, String field) {
       return "$field must contain at least one uppercase letter";
     } else if (!RegExp(r'(?=.*\d)').hasMatch(val)) {
       return "$field must contain at least one digit";
-    } 
+    } else if (!RegExp(r'^[a-zA-Z0-9@#$%^&+=]+$').hasMatch(val)) {
+      return "$field can't contain these characters";
+    }
   }
 
   return null;

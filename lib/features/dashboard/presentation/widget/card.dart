@@ -1,3 +1,4 @@
+import 'package:ecommerce/core/constants/colors.dart';
 import 'package:ecommerce/core/constants/iconasset.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,78 +11,107 @@ class CardWidget extends StatelessWidget {
   final List<String> images;
 
   const CardWidget({
-    Key? key,
+    super.key,
     required this.header,
     required this.description,
     required this.price,
     required this.images,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
+    return AspectRatio(
+      aspectRatio: 0.88,
+      child: Container(
+        clipBehavior: Clip.hardEdge,
+        height: 300,
+        width: 170,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+          color: CustomColors.backgroundColor,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(
+            Container(
+              clipBehavior: Clip.hardEdge,
+              height: 124,
+              width: 170,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
               child: InstaImageViewer(
                 child: Image.network(
                   images.first,
                   errorBuilder: (context, error, stackTrace) {
                     print('Error loading image: $error');
                     return const CircleAvatar(
-                      backgroundColor: Colors.grey,
-                      child: Icon(Icons.image_not_supported, color: Colors.white),
+                      backgroundColor: CustomColors.backgroundColor,
+                      child:
+                          Icon(Icons.image_not_supported, color: Colors.white),
                     );
                   },
                   fit: BoxFit.cover,
                 ),
               ),
             ),
-            Text(
-              header,
-              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-            ),
-            SizedBox(
-              height: 10,
-              child: Text(
-                description,
-                style:
-                    const TextStyle(fontSize: 10, fontWeight: FontWeight.w400),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    header,
+                    style: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.w500),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    description,
+                    style: const TextStyle(
+                        fontSize: 10, fontWeight: FontWeight.w400),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    "\$$price",
+                    style: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      Row(
+                        children: [
+                          SvgPicture.asset(
+                            CustomIconAsset.heart,
+                            height: 20,
+                            width: 20,
+                            fit: BoxFit.scaleDown,
+                          ),
+                          SizedBox(width: 10),
+                          Icon(Icons.bookmark),
+                        ],
+                      ),
+                      SizedBox(width: 100),
+                      SvgPicture.asset(
+                        CustomIconAsset.cart,
+                        height: 20,
+                        width: 20,
+                        fit: BoxFit.scaleDown,
+                      ),
+                    ],
+                  )
+                ],
               ),
             ),
-            Text(
-              "\$$price",
-              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-            ),
-            Row(
-              children: [
-                Row(
-                  children: [
-                    SvgPicture.asset(
-                      CustomIconAsset.heart,
-                      height: 20,
-                      width: 20,
-                      fit: BoxFit.scaleDown,
-                    ),
-                    SvgPicture.asset(
-                      CustomIconAsset.save,
-                      height: 20,
-                      width: 20,
-                      fit: BoxFit.scaleDown,
-                    ),
-                  ],
-                ),
-                SvgPicture.asset(
-                  CustomIconAsset.cart,
-                  height: 20,
-                  width: 20,
-                  fit: BoxFit.scaleDown,
-                ),
-              ],
-            )
           ],
         ),
       ),

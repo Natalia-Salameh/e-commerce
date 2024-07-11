@@ -1,3 +1,4 @@
+import 'package:ecommerce/core/constants/routes.dart';
 import 'package:ecommerce/features/dashboard/domain/entities/category_entity.dart';
 import 'package:ecommerce/features/dashboard/domain/usecases/category_usecase.dart';
 import 'package:get/get.dart';
@@ -23,5 +24,17 @@ class CategoryController extends GetxController {
     } catch (e) {
       print('Failed to fetch categories: $e');
     }
+  }
+
+  void getToCategory() {
+    Get.toNamed(AppRoute.category);
+  }
+
+  void getToHome() {
+    Get.toNamed(AppRoute.home);
+  }
+
+  void back() {
+    Get.back();
   }
 }
