@@ -20,7 +20,10 @@ class NetworkHandler {
     var uri = Uri.parse(url);
     if (queryParams != null) {
       uri = uri.replace(queryParameters: queryParams);
+      print("full url $uri");
     }
+
+    print("request $url , $queryParams");
 
     try {
       var response = await http.get(uri, headers: headers);

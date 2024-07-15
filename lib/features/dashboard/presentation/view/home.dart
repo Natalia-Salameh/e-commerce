@@ -43,7 +43,7 @@ class Home extends StatelessWidget {
           },
         ),
         title: Padding(
-          padding: const EdgeInsets.all(100),
+          padding: const EdgeInsets.all(60),
           child: Row(
             children: [
               Image.asset(
@@ -209,7 +209,7 @@ class Home extends StatelessWidget {
                   return const Center(child: CustomProgressIndicator());
                 } else {
                   return GridView.count(
-                    childAspectRatio: 0.77,
+                    childAspectRatio: 0.67,
                     crossAxisCount: 2,
                     crossAxisSpacing: 10,
                     mainAxisSpacing: 30,

@@ -18,7 +18,7 @@ class ProductController extends GetxController {
   void fetchProducts() async {
     try {
       List<ProductEntity> fetchedProducts = await _fetchProductsUseCase.execute();
-      products.assignAll(fetchedProducts);
+      products.assignAll(fetchedProducts.take(10).toList());
     } catch (e) {
       print('Failed to fetch products: $e');
     }

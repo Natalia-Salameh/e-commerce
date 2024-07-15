@@ -21,7 +21,7 @@ class CardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 0.88,
+      aspectRatio: 0.70,
       child: Container(
         clipBehavior: Clip.hardEdge,
         height: 300,
@@ -100,7 +100,7 @@ class CardWidget extends StatelessWidget {
                           Icon(Icons.bookmark),
                         ],
                       ),
-                      SizedBox(width: 100),
+                      SizedBox(width: 70),
                       SvgPicture.asset(
                         CustomIconAsset.cart,
                         height: 20,
