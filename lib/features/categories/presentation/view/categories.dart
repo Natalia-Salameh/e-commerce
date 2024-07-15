@@ -1,5 +1,6 @@
 import 'package:ecommerce/core/constants/colors.dart';
 import 'package:ecommerce/core/constants/iconasset.dart';
+import 'package:ecommerce/core/shared/CircularIndicator.dart';
 import 'package:ecommerce/core/shared/dialogWidget.dart';
 import 'package:ecommerce/core/shared/search.dart';
 import 'package:ecommerce/features/auth/presentation/controller/login_controller.dart';
@@ -95,17 +96,17 @@ class Categories extends StatelessWidget {
               icon: Icon(Icons.search),
             ),
             const SizedBox(
-              height: 40,
+              height: 50,
             ),
             Obx(() {
               if (categoryController.categories.isEmpty) {
-                return const Center(child: CircularProgressIndicator());
+                return const Center(child: CustomProgressIndicator());
               } else {
                 return GridView.count(
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 30,
-                  childAspectRatio: 0.88,
+                  childAspectRatio: 0.77,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   children: categoryController.categories.map((category) {

@@ -1,6 +1,6 @@
 import 'package:ecommerce/core/constants/colors.dart';
 import 'package:ecommerce/core/constants/iconasset.dart';
-import 'package:ecommerce/core/constants/routes.dart';
+import 'package:ecommerce/core/shared/CircularIndicator.dart';
 import 'package:ecommerce/core/shared/dialogWidget.dart';
 import 'package:ecommerce/core/shared/search.dart';
 import 'package:ecommerce/features/auth/presentation/controller/login_controller.dart';
@@ -162,7 +162,7 @@ class Home extends StatelessWidget {
               Obx(
                 () {
                   if (categoryController.categories.isEmpty) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: CustomProgressIndicator());
                   } else {
                     return SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
@@ -206,7 +206,7 @@ class Home extends StatelessWidget {
               const SizedBox(height: 16),
               Obx(() {
                 if (productController.products.isEmpty) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(child: CustomProgressIndicator());
                 } else {
                   return GridView.count(
                     childAspectRatio: 0.77,
@@ -235,7 +235,7 @@ class Home extends StatelessWidget {
               Obx(
                 () {
                   if (productController.products.isEmpty) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: CustomProgressIndicator());
                   } else {
                     return SingleChildScrollView(
                       scrollDirection: Axis.horizontal,

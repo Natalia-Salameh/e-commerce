@@ -9,6 +9,7 @@ class CategoryController extends GetxController {
   CategoryController(this._fetchCategoriesUseCase);
 
   RxList<CategoryEntity> categories = RxList<CategoryEntity>();
+  
 
   @override
   void onInit() {

@@ -1,4 +1,3 @@
-import 'package:ecommerce/core/constants/routes.dart';
 import 'package:ecommerce/features/auth/domain/entities/login_entity.dart';
 import 'package:ecommerce/features/auth/domain/entities/signup_entity.dart';
 import 'package:ecommerce/features/auth/domain/usecases/signup_usecase.dart';

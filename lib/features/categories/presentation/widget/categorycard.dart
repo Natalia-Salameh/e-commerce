@@ -12,54 +12,49 @@ class CategoryCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 0.88,
-      child: Container(
-        decoration: BoxDecoration(
-          boxShadow: const [
-            BoxShadow(
-                blurRadius: 2,
-                offset: Offset(0, 2),
-                color: Color.fromRGBO(0, 0, 0, 0.15))
-          ],
-          color: CustomColors.backgroundColor,
-          borderRadius: BorderRadius.circular(8),
-        ),
-        width: 164,
-        height: 245,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            InstaImageViewer(
-              child: Container(
-                clipBehavior: Clip.hardEdge,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(8)),
-                height: 136,
-                child: Image.network(
-                  image,
-                  errorBuilder: (context, error, stackTrace) {
-                    print('Error loading image: $error');
-                    return const CircleAvatar(
-                      backgroundColor: Colors.grey,
-                      child:
-                          Icon(Icons.image_not_supported, color: Colors.white),
-                    );
-                  },
-                  fit: BoxFit.cover,
-                ),
+    return Container(
+      width: 150,
+      height: 245,
+      decoration: BoxDecoration(
+        boxShadow: const [
+          BoxShadow(
+              blurRadius: 2,
+              offset: Offset(0, 2),
+              color: Color.fromRGBO(0, 0, 0, 0.15))
+        ],
+        color: CustomColors.backgroundColor,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          InstaImageViewer(
+            child: Container(
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+              height: 136,
+              child: Image.network(
+                image,
+                errorBuilder: (context, error, stackTrace) {
+                  print('Error loading image: $error');
+                  return const CircleAvatar(
+                    backgroundColor: Colors.grey,
+                    child: Icon(Icons.image_not_supported, color: Colors.white),
+                  );
+                },
+                fit: BoxFit.cover,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                header,
-                style: GoogleFonts.montserrat(
-                    fontWeight: FontWeight.w500, fontSize: 16),
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              header,
+              style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.w500, fontSize: 16),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
